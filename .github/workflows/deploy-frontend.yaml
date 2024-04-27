@@ -1,4 +1,4 @@
-name: Deploy Web App
+name: Deploy Web App - Frontend
 
 on:
   push:
