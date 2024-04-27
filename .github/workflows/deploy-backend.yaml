@@ -23,13 +23,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
       
-      - name: Run script file
-        run: |
-          cd api
-          echo MONGO_URL="mongodb+srv://admin:T9ud6IkaljkQQrA2@moneytracker.pmedkyg.mongodb.net/?retryWrites=true&w=majority&appName=moneytracker" > .env
-          pm2 start app.js
-          pm2 save
-        shell: bash
+      - run: npm install pm2@latest -g #install pm2 global
+      - run: pm2 -V #check pm2 version
+      - run: pm2 list #check pm2 list
+      #running pm2 in mode cluster and --watch set to auto restart if index.js have changes.
+      - run: pm2 start api/index.js --watch -i max
   
   webserver-2:
     runs-on: 31133  # Etiqueta de tu runner auto-hospedado
