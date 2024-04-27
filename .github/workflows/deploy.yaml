@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-1:
-    runs-on: bastion-host-2860  # Etiqueta de tu runner auto-hospedado
+    runs-on: 25143  # Etiqueta de tu runner auto-hospedado
     steps:
       - uses: actions/checkout@v3
       
@@ -31,7 +31,7 @@ jobs:
         shell: bash
   
   build-2:
-    runs-on: bastion-host-4077  # Etiqueta de tu runner auto-hospedado
+    runs-on: 25939  # Etiqueta de tu runner auto-hospedado
     steps:
       - uses: actions/checkout@v3
       
