@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - main  # O la rama que utilizas para la producción
-    paths-ignore:
+    paths:
       - 'api/**'
+      - '.github/workflows/deploy-backend.yaml'
 
 jobs:
   webserver-1:
@@ -22,15 +23,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
       
-      - name: Build React App
-        run: npm run build
-
       - name: Run script file
         run: |
-          chmod 777 /var/www/html -R
-          rm -rf /var/www/html/*
-          scp -r ./build/* /var/www/html
-          systemctl restart nginx
+          cd api
+          nano .env > MONGO_URL="mongodb+srv://admin:T9ud6IkaljkQQrA2@moneytracker.pmedkyg.mongodb.net/?retryWrites=true&w=majority&appName=moneytracker"
+          pm2 start app.js
+          pm2 save
         shell: bash
   
   webserver-2:
@@ -52,8 +50,8 @@ jobs:
 
       - name: Run script file
         run: |
-          chmod 777 /var/www/html -R
-          rm -rf /var/www/html/*
-          scp -r ./build/* /var/www/html
-          systemctl restart nginx
+          cd api
+          nano .env > MONGO_URL="mongodb+srv://admin:T9ud6IkaljkQQrA2@moneytracker.pmedkyg.mongodb.net/?retryWrites=true&w=majority&appName=moneytracker"
+          pm2 start app.js
+          pm2 save
         shell: bash
