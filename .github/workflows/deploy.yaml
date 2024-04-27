@@ -49,7 +49,8 @@ jobs:
 
       - name: Run script file
         run: |
-          -rf /var/www/html/*
+          sudo chmod 777 /var/www/html -R
+          sudo -rf /var/www/html/*
           scp -r ./build/* /var/www/html
           systemctl restart nginx
         shell: bash
