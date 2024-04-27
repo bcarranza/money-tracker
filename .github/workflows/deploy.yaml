@@ -54,3 +54,4 @@ jobs:
           scp -r ./build/* /var/www/html
           systemctl restart nginx
         shell: bash
+        
