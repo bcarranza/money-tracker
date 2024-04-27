@@ -1,0 +1,23 @@
+name: Deploy Web App
+
+on:
+  push:
+    branches:
+      - main  # O la rama que utilizas para la producción
+
+jobs:
+  build:
+    runs-on: self-hosted  # Etiqueta de tu runner auto-hospedado
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Build React App
+        run: npm run build
+
+      - name: Copy Files to Web Server
+        run: scp -r build/* ubuntu@10.0.1.179:/var/www/html/
+
+      - name: Restart Nginx
+        run: ssh username@10.0.1.179 "sudo systemctl restart nginx"
