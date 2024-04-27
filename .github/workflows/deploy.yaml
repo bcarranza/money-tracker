@@ -23,23 +23,9 @@ jobs:
       - name: Build React App
         run: npm run build
 
-      - name: Copy Files to Web Server
-        #run: scp -r build/* ubuntu@10.0.1.179:/var/www/html/
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: 10.0.1.179
-          username: ubuntu
-          port: 22
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "/build"
-          target: "/var/www/html/"
-
-      - name: Restart App Server development
-        uses: appleboy/ssh-action@master
-        with:
-          host: 10.0.1.179
-          username: ubuntu
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            sudo service nginx restart
+      - name: Run script file
+        run: |
+          sudo -rf /var/www/html/*
+          scp -r ./build/* /var/www/html
+          sudo systemctl restart nginx
+        shell: bash
