@@ -10,7 +10,7 @@ on:
 
 jobs:
   webserver-1:
-    runs-on: 11703  # Etiqueta de tu runner auto-hospedado
+    runs-on: 10175  # Etiqueta de tu runner auto-hospedado
     steps:
       - uses: actions/checkout@v3
       
@@ -23,14 +23,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
       
-      - run: npm install pm2@latest -g #install pm2 global
-      - run: pm2 -V #check pm2 version
-      - run: pm2 list #check pm2 list
-      #running pm2 in mode cluster and --watch set to auto restart if index.js have changes.
-      - run: pm2 start api/index.js --watch -i max
+      - name: Run the scripts
+        run: |
+          pm2 start ./api/index.js
   
   webserver-2:
-    runs-on: 31133  # Etiqueta de tu runner auto-hospedado
+    runs-on: 19389  # Etiqueta de tu runner auto-hospedado
     steps:
       - uses: actions/checkout@v3
       
@@ -43,8 +41,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - run: npm install pm2@latest -g #install pm2 global
-      - run: pm2 -V #check pm2 version
-      - run: pm2 list #check pm2 list
-      #running pm2 in mode cluster and --watch set to auto restart if index.js have changes.
-      - run: pm2 start api/index.js --watch -i max
+      - name: Run the scripts
+        run: |
+          pm2 start ./api/index.js
