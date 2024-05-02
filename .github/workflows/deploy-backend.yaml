@@ -25,7 +25,7 @@ jobs:
       
       - name: Run the scripts
         run: |
-          pm2 start ./api/index.js
+          pm2 start ./api/index.js --port 4000 --name moneytrackerapi
   
   webserver-2:
     runs-on: 19389  # Etiqueta de tu runner auto-hospedado
@@ -43,4 +43,4 @@ jobs:
 
       - name: Run the scripts
         run: |
-          pm2 start ./api/index.js
+          pm2 start ./api/index.js --port 4000 --name moneytrackerapi
