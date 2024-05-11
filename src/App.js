@@ -87,7 +87,7 @@ function App() {
                 onChange={(ev) => setDescription(ev.target.value)}
                 placeholder={'description'}></input>
         </div>
-        <button type='submit'>Add new transaction</button>
+        <button type='submit'>Please, Add new transaction</button>
       </form>
       <div className='transactions'>
         {transactions.length > 0 && transactions.map(transaction => (
