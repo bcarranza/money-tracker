@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('Hello World F2!');
 })
 
 app.post('/api/transaction', async (req, res) => {
