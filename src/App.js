@@ -76,7 +76,7 @@ function App() {
           <input type="text" 
                  value={name}
                  onChange={(ev) => setName(ev.target.value)}
-                 placeholder={'+200 new samsumg tv'}></input>
+                 placeholder={'+200 new Panasonic tv'}></input>
           <input value={datetime}
                  onChange={(ev) => setDatetime(ev.target.value)}
                  type="datetime-local"/>
