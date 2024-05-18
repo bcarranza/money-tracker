@@ -39,7 +39,7 @@ jobs:
       # Deploy to remote host via SSH
       - name: Deploy to Remote Server
         run: |
-          rsync -avz --delete ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST1 }}:/var/www/html/
+          rsync -avz --delete -e "ssh -p 22" ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST1 }}:/var/www/html/ --rsync-path="sudo rsync"
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST1 }} 'sudo systemctl restart nginx'
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
@@ -77,7 +77,7 @@ jobs:
       # Deploy to remote host via SSH
       - name: Deploy to Remote Server
         run: |
-          rsync -avz --delete ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST2 }}:/var/www/html/
+          rsync -avz --delete -e "ssh -p 22" ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST1 }}:/var/www/html/ --rsync-path="sudo rsync"
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST2 }} 'sudo systemctl restart nginx'
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
