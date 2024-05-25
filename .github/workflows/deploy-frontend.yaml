@@ -82,7 +82,7 @@ jobs:
         run: |
           echo "====== Deploy to production server ======"
           echo "====== Sync local and remote directory ======"
-          rsync -azPq -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --delete ./build/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST2 }}:/var/www/html/"
+          rsync -azPq -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --delete ./build/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST2 }}:/var/www/html/" --rsync-path="sudo rsync"
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST2 }} 'sudo systemctl restart nginx'
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
